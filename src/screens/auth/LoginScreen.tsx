@@ -27,6 +27,11 @@ export const LoginScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const dispatch = useDispatch();
 
+  const keyboardHide = () => {
+    //Keyboard.dismiss();
+    setIsShowKeyboard(false);
+  };
+
   const {
     control,
     handleSubmit,
@@ -34,11 +39,6 @@ export const LoginScreen = ({ navigation }) => {
   } = useForm<FormData>({
     resolver: yupResolver(schemaLogin),
   });
-
-  const keyboardHide = () => {
-    Keyboard.dismiss();
-    setIsShowKeyboard(false);
-  };
 
   const onPressLoginSubmit: SubmitHandler<FormData> = (data) => {
     setIsShowKeyboard(false);
@@ -72,7 +72,9 @@ export const LoginScreen = ({ navigation }) => {
                       style={styles.input}
                       textAlign={"center"}
                       onChangeText={onChange}
+                      onBlur={onBlur}
                       value={value}
+                      onFocus={() => setIsShowKeyboard(true)}
                       placeholder="Email"
                       placeholderTextColor={"gray"}
                       autoCorrect={false}
@@ -98,6 +100,7 @@ export const LoginScreen = ({ navigation }) => {
                       textAlign={"center"}
                       onBlur={onBlur}
                       onChangeText={(value) => onChange(value)}
+                      onFocus={() => setIsShowKeyboard(true)}
                       value={value}
                       placeholder="Password"
                       placeholderTextColor={"gray"}
@@ -124,7 +127,7 @@ export const LoginScreen = ({ navigation }) => {
                   alignSelf: "center",
                 }}>
                 <Text style={{ color: "#fff" }}>
-                  New to application?
+                  Already registered?
                   <Text style={{ fontSize: 20, color: "#ff6347" }}>
                     Sign Up
                   </Text>
@@ -157,7 +160,7 @@ const styles = StyleSheet.create({
     color: "aliceblue",
   },
   form: {
-    //marginHorizontal: 40,
+    marginHorizontal: 40,
   },
   inputTitle: {
     color: "aliceblue",
@@ -189,7 +192,7 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: "center",
-    marginBottom: 120,
+    marginBottom: 100,
   },
   headerTitle: {
     fontSize: 40,

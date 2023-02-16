@@ -28,6 +28,11 @@ export const RegisterScreen = ({ navigation }) => {
 
   const dispatch = useDispatch();
 
+  const keyboardHide = () => {
+    //setIsShowKeyboard(false);
+    Keyboard.dismiss();
+  };
+
   const {
     control,
     handleSubmit,
@@ -43,7 +48,7 @@ export const RegisterScreen = ({ navigation }) => {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={OnPressSubmit}>
+    <TouchableWithoutFeedback onPress={keyboardHide}>
       <View style={styles.container}>
         <ImageBackground
           style={styles.image}
@@ -53,7 +58,7 @@ export const RegisterScreen = ({ navigation }) => {
             <View
               style={{
                 ...styles.form,
-                marginBottom: isShowKeyboard ? 20 : 150,
+                marginBottom: isShowKeyboard ? 20 : 135,
               }}>
               <View style={styles.header}>
                 <Text style={styles.headerTitle}>Hello</Text>
@@ -67,6 +72,7 @@ export const RegisterScreen = ({ navigation }) => {
                     <TextInput
                       style={styles.input}
                       textAlign={"center"}
+                      onFocus={() => setIsShowKeyboard(true)}
                       onBlur={onBlur}
                       onChangeText={onChange}
                       value={value}
@@ -88,6 +94,7 @@ export const RegisterScreen = ({ navigation }) => {
                     <TextInput
                       style={styles.input}
                       textAlign={"center"}
+                      onFocus={() => setIsShowKeyboard(true)}
                       onBlur={onBlur}
                       onChangeText={onChange}
                       value={value}
@@ -114,6 +121,7 @@ export const RegisterScreen = ({ navigation }) => {
                     <TextInput
                       style={styles.input}
                       textAlign={"center"}
+                      onFocus={() => setIsShowKeyboard(true)}
                       onBlur={onBlur}
                       onChangeText={(value) => onChange(value)}
                       value={value}
@@ -208,11 +216,12 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: "center",
-    marginBottom: 140,
+    marginBottom: 25,
   },
   headerTitle: {
-    fontSize: 30,
+    fontSize: 40,
     color: "#f0f8ff",
+    textAlign: "center",
   },
   error: {
     marginTop: 2,

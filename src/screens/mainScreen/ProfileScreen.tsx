@@ -23,6 +23,7 @@ type userProps = {
 
 export const ProfileScreen = () => {
   const [user, setUser] = useState<userProps | null>(null);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
   const dispatch = useDispatch();
 
   const getUser = async () => {
@@ -43,8 +44,19 @@ export const ProfileScreen = () => {
     dispatch(logOutRequest());
   };
 
+  const setDarkThem = () => {
+    if (isDarkTheme) {
+      setIsDarkTheme(false);
+      return;
+    } else setIsDarkTheme(true);
+  };
+
   return (
-    <View style={styles.container}>
+    <View
+      style={{
+        ...styles.container,
+        backgroundColor: isDarkTheme ? "black" : "lightslategrey",
+      }}>
       <View style={styles.profile}>
         {user ? (
           <Image
@@ -68,6 +80,12 @@ export const ProfileScreen = () => {
       <TouchableOpacity
         activeOpacity={0.8}
         style={styles.btn}
+        onPress={setDarkThem}>
+        <Text style={styles.btnTitle}>Change theme: Light</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        style={styles.btn}
         onPress={onPressLogout}>
         <Text style={styles.btnTitle}>Logout</Text>
       </TouchableOpacity>
@@ -78,7 +96,7 @@ export const ProfileScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "lightslategrey",
+    //backgroundColor: "lightslategrey",
     paddingVertical: 20,
     paddingHorizontal: 20,
   },
