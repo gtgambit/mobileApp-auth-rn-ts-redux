@@ -15,8 +15,14 @@ import { useEffect, useState } from "react";
 
 import { logOutRequest } from "../../redux/User/thunk";
 
+type userProps = {
+  email: string;
+  first_name: string;
+  avatar: string;
+};
+
 export const ProfileScreen = () => {
-  const [user, setUser] = useState<number>(1);
+  const [user, setUser] = useState<userProps | null>(null);
   const dispatch = useDispatch();
 
   const getUser = async () => {
@@ -33,7 +39,7 @@ export const ProfileScreen = () => {
   }, []);
 
   const onPressLogout = () => {
-    setUser(0);
+    setUser(null);
     dispatch(logOutRequest());
   };
 

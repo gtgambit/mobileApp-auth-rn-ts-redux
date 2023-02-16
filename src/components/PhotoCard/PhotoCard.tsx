@@ -1,6 +1,16 @@
 import { View, Text, Image, StyleSheet } from "react-native";
 
-export const PhotoCard = ({ photo }) => {
+interface Photos {
+  photo: {
+    author: string;
+    width: number;
+    height: number;
+    url: string;
+    download_url: string;
+  };
+}
+
+export const PhotoCard = ({ photo }: Photos): JSX.Element => {
   return (
     <View style={styles.container}>
       <Image source={{ uri: photo.download_url }} style={styles.image} />
@@ -27,7 +37,7 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingStart: 10,
     paddingVertical: 10,
-    backgroundColor: "rgba(0,0,0,0.5)",
+    backgroundColor: "rgba(0,0,0,0.6)",
     color: "white",
   },
 });
