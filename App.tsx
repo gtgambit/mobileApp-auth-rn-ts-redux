@@ -1,13 +1,13 @@
-import { App } from "./src/App";
+import { Index } from "./src/Index";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor, store } from "./src/redux/store";
 
-export const AppWrapper = () => {
+export const App = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <App />
+        <Index />
       </PersistGate>
     </Provider>
   );
