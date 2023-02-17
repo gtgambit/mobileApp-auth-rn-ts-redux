@@ -81,7 +81,7 @@ export const ProfileScreen = () => {
         activeOpacity={0.8}
         style={styles.btn}
         onPress={setDarkThem}>
-        <Text style={styles.btnTitle}>Change theme: Light</Text>
+        <Text style={styles.btnTitle}>Change theme</Text>
       </TouchableOpacity>
       <TouchableOpacity
         activeOpacity={0.8}
