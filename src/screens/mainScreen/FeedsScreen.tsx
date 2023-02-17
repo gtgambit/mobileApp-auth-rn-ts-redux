@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, FlatList, RefreshControl } from "react-native";
 import { getPhotos } from "../../services/photosApi";
 import { useEffect, useState } from "react";
-import { PhotoCard } from "../../components/PhotoCard/PhotoCard";
+import { PhotoItem } from "../../components/PhotoItem/PhotoItem";
 
 export const FeedsScreen = () => {
   const [pageNum, setPageNum] = useState(1);
@@ -10,6 +10,18 @@ export const FeedsScreen = () => {
   const [refreshing, setRefreshing] = React.useState(false);
 
   const requestPhotos = async (pageNum) => {
+    try {
+      setRefreshing(true);
+      const data = await getPhotos(pageNum);
+      return setPhotos(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setRefreshing(false);
+    }
+  };
+
+  const addMorePhotos = async (pageNum) => {
     try {
       const data = await getPhotos(pageNum);
       return setPhotos((prev) => [...prev, ...data]);
@@ -21,27 +33,32 @@ export const FeedsScreen = () => {
   useEffect(() => {
     if (pageNum === 1) {
       requestPhotos(pageNum);
+      return;
     }
-    getMorePhotos();
-  }, []);
+    addMorePhotos(pageNum);
+  }, [pageNum]);
 
   const getMorePhotos = () => {
-    requestPhotos(pageNum);
     setPageNum((prev) => prev + 1);
   };
 
   const onRefresh = React.useCallback(() => {
-    setRefreshing(true);
-    setTimeout(() => {
-      setRefreshing(false);
-    }, 2000);
+    //setRefreshing(true);
+    //setTimeout(() => {
+
+    //  setRefreshing(false);
+    //}, 2000);
+    if (pageNum === 1) {
+      requestPhotos(pageNum);
+    }
+    setPageNum(1);
   }, []);
 
   return (
     <View style={styles.container}>
       <FlatList
         data={photos}
-        renderItem={({ item }) => <PhotoCard photo={item} />}
+        renderItem={({ item }) => <PhotoItem photo={item} />}
         keyExtractor={(item) => item.id}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />

@@ -10,7 +10,7 @@ interface Photos {
   };
 }
 
-export const PhotoCard = ({ photo }: Photos): JSX.Element => {
+export const PhotoItem = ({ photo }: Photos): JSX.Element => {
   return (
     <View style={styles.container}>
       <Image source={{ uri: photo.download_url }} style={styles.image} />
