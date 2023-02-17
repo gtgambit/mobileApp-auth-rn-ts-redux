@@ -5,9 +5,9 @@ Mobile App Description (EN)
 3)Navigation with Material Top Tabs Navigator.<br/>
 4)Infinite Scroll for photos gallery at Feeds Screen Tab.<br/>
 5)User Profile with avatar and user info on Profile Screen Tab and logout button.<br/>
-6)For user registration and authorization was used, https://connections-api.herokuapp.com/<br/>
-7)For user info on profile Screen was used https://reqres.in/api<br/>
-8)For photos on Feeds Screen was used https://picsum.photos/<br/>
+6)For user registration and authorization was used Api service: https://connections-api.herokuapp.com/<br/>
+7)For user info on Profile Screen was used Api service: https://reqres.in/api<br/>
+8)For photos on Feeds Screen was used Api service: https://picsum.photos/<br/>
 
 
 
@@ -20,6 +20,6 @@ Mobile App Description (EN)
 4)Нескінченне прокручування для галереї фотографій на вкладці екрана каналів.<br/>
 5)Профіль користувача з аватаром і інформацією про користувача на вкладці екрана профілю та кнопкою виходу.<br/>
 6)Для реєстрації та авторизації користувача використовувався сервіс https://connections-api.herokuapp.com<br/>
-7) Для інформації про користувача на екрані профілю використовувався https://reqres.in/api<br/>
-8) Для фотографій на екрані каналів використовувався https://picsum.photos/<br/>
+7) Для інформації про користувача на екрані профілю використовувався сервіс https://reqres.in/api<br/>
+8) Для фотографій на екрані каналів використовувався сервіс https://picsum.photos/<br/>
 
